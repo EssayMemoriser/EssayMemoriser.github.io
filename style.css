@@ -1,0 +1,145 @@
+/* Base */
+:root {
+  --bg: #0b1020;
+  --card: #121a34;
+  --text: #e8eefc;
+  --muted: #9fb0d3;
+  --primary: #4f7cff;
+  --primary-600: #3e68e6;
+  --border: #223059;
+  --success: #22c55e;
+  /* Typography controls */
+  --out-font-size: 15px;
+  --out-line-height: 1.6;
+}
+
+/* Light theme */
+:root[data-theme="light"] {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #0b1020;
+  --muted: #4b587a;
+  --primary: #365cff;
+  --primary-600: #2847d6;
+  --border: #e2e8f0;
+}
+
+/* Mobile bottom bar */
+.mobile-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(12, 20, 43, 0.9);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  display: none;
+  gap: 8px;
+  padding: 10px env(safe-area-inset-right) calc(10px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
+  justify-content: space-around;
+  z-index: 10000;
+}
+
+@media (max-width: 700px) {
+  .mobile-bar { display: flex; }
+  .container { padding-bottom: 80px; }
+}
+
+/* ===== Additional Polishing ===== */
+/* Sticky header with subtle backdrop */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+
+/* Cards: elevate and animate */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+}
+
+/* Buttons: variants and focus ring */
+.btn {
+  position: relative;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.35);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+/* Labels */
+.label { letter-spacing: 0.2px; }
+
+/* Output monospace tweaks */
+.output {
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+:root[data-theme="light"] .output { background: #fbfdff; }
+
+/* Stage pills hover */
+.pill:hover { border-color: var(--primary); }
+
+/* Responsive card grid on content-heavy pages */
+.app-main.cards-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 1000px) {
+  .app-main.cards-2 { grid-template-columns: 1fr; }
+}
+
+/* ===== Extra visual polish ===== */
+.header-content h1 {
+  background: linear-gradient(90deg, var(--text), #9fb0d3 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subtitle { letter-spacing: .2px; }
+
+.container { max-width: 1100px; }
+
+/* Primary button gradient */
+.btn.primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  border-color: var(--primary-600);
+}
+.btn.primary:hover { filter: brightness(1.05); }
+
+/* Softer shadows */
+.card, .output { box-shadow: 0 12px 26px rgba(0,0,0,.22); }
+:root[data-theme="light"] .card, :root[data-theme="light"] .output { box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+
+/* kbd styling for shortcut hints */
+kbd {
+  background: #0c142b;
+  border: 1px solid var(--border);
+  border-bottom-color: #1b2a52;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.04);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+/* Codearea sizing comfort */
+.codearea { min-height: 120px; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

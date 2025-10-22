@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Help • Essay Memoriser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <h1>Essay Memoriser</h1>
+      <p class="subtitle">Help & Guide</p>
+    </div>
+    <nav class="container" style="display:flex; gap:14px; padding-bottom:10px;">
+      <a href="index.html" class="btn ghost small">Trainer</a>
+      <a href="help.html" class="btn ghost small" aria-current="page">Help</a>
+      <a href="about.html" class="btn ghost small">About</a>
+    </nav>
+  </header>
+
+  <main class="container app-main">
+    <section class="card">
+      <h2>How it works</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Stages</h3>
+          <ul>
+            <li><strong>Read</strong> – Read the current sentence (or paragraph).</li>
+            <li><strong>Cloze</strong> – Optional masked prompt to test recognition.</li>
+            <li><strong>Recall</strong> – Type from memory and click Check.</li>
+            <li><strong>Cumulative</strong> – After N sentences, recall everything so far.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Controls</h3>
+          <ul>
+            <li><strong>Prev/Next</strong> – Navigate stages and chunks.</li>
+            <li><strong>Show/Hide</strong> – Peek during Recall stages.</li>
+            <li><strong>Copy chunk</strong> – Copy current chunk to clipboard.</li>
+            <li><strong>🔊 Read</strong> – Text-to-speech of the current prompt.</li>
+            <li><strong>⛶ Fullscreen</strong> – Focus mode.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Keyboard shortcuts</h2>
+      <ul>
+        <li><strong>Cmd/Ctrl + Enter</strong> – Check</li>
+        <li><strong>← / →</strong> – Prev / Next</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Tips for memorisation</h2>
+      <ul>
+        <li><strong>Chunk wisely</strong> – Smaller chunks help accuracy. Increase later.</li>
+        <li><strong>Use Cloze early</strong> – Recognition helps prime recall.</li>
+        <li><strong>Repeat cumulative</strong> – The more cumulative recalls, the deeper it sticks.</li>
+        <li><strong>Read aloud</strong> – Use TTS or your own voice to encode through speech.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Troubleshooting</h2>
+      <ul>
+        <li><strong>No styles?</strong> – Hard refresh (Cmd/Ctrl+Shift+R). Ensure you opened <code>Engshit/index.html</code>.</li>
+        <li><strong>TTS not working?</strong> – Your browser must support <code>speechSynthesis</code>.</li>
+        <li><strong>Lost essay?</strong> – Essays and settings auto-save locally. Use Export to back up.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <small>Essay Memoriser • Help</small>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Essay Memoriser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <h1>Essay Memoriser</h1>
+      <p class="subtitle">Test and train your memory bit by bit</p>
+      <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
+        <label class="label" for="themeSwitch" style="margin:0;">Theme</label>
+        <select id="themeSwitch" class="input" style="width:auto; padding:6px 10px;">
+          <option value="dark" selected>Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </div>
+    </div>
+    <nav class="container" style="display:flex; gap:14px; padding-bottom:10px;">
+      <a href="index.html" class="btn ghost small" aria-current="page">Trainer</a>
+      <a href="library.html" class="btn ghost small">Library</a>
+      <a href="help.html" class="btn ghost small">Help</a>
+      <a href="about.html" class="btn ghost small">About</a>
+    </nav>
+  </header>
+
+  <main class="container app-main">
+    <section class="card">
+      <h2>Essay</h2>
+      <p class="help">Paste or edit your essay below. Then choose settings and press Start.</p>
+      <div class="form-row">
+        <label class="label" for="essayInput">Text</label>
+        <textarea id="essayInput" class="codearea" rows="12"></textarea>
+      </div>
+      <div class="actions">
+        <input type="file" id="importFile" accept=".txt" style="display:none;" />
+        <button id="importBtn" class="btn">Import .txt</button>
+        <button id="exportBtn" class="btn">Export .txt</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Settings</h2>
+      <form id="settingsForm" class="grid-form">
+        <div class="form-row">
+          <label class="label" for="chunkType">Chunk by</label>
+          <select id="chunkType" class="input">
+            <option value="sentence">Sentence</option>
+            <option value="paragraph">Paragraph</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="difficulty">Cloze difficulty</label>
+          <select id="difficulty" class="input">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="clozeEnabled">Enable Cloze stage</label>
+          <select id="clozeEnabled" class="input">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="caseSensitive">Case sensitive check</label>
+          <select id="caseSensitive" class="input">
+            <option value="no" selected>No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="cumulativeStep">Cumulative step (sentences)</label>
+          <select id="cumulativeStep" class="input">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="autoAdvance">Auto-advance on ≥ threshold</label>
+          <select id="autoAdvance" class="input">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="passThreshold">Pass threshold (%)</label>
+          <input id="passThreshold" class="input" type="range" min="50" max="100" value="100" step="5" />
+          <small id="passValue" class="help">100%</small>
+        </div>
+        <div class="form-row">
+          <label class="label" for="fontSize">Font size</label>
+          <input id="fontSize" class="input" type="range" min="14" max="24" value="15" />
+        </div>
+        <div class="form-row">
+          <label class="label" for="lineHeight">Line spacing</label>
+          <input id="lineHeight" class="input" type="range" min="1.2" max="2.0" value="1.6" step="0.1" />
+        </div>
+      </form>
+      <div class="actions">
+        <button id="startBtn" class="btn primary">Start</button>
+        <button id="resetBtn" class="btn">Reset</button>
+      </div>
+    </section>
+
+    <section class="card output-card">
+      <div class="output-header">
+        <h2>Trainer</h2>
+        <div>
+          <button id="copyChunkBtn" class="btn small">Copy chunk</button>
+          <button id="ttsBtn" class="btn small">🔊 Read</button>
+          <button id="fsBtn" class="btn small">⛶ Fullscreen</button>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0 8px;">
+        <span id="pillRead" class="pill"><span class="dot"></span>Read</span>
+        <span id="pillCloze" class="pill"><span class="dot"></span>Cloze</span>
+        <span id="pillRecall" class="pill"><span class="dot"></span>Recall</span>
+        <span id="stageLabel" class="help" style="margin-left:auto;">Stage: —</span>
+      </div>
+      <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+      <pre id="prompt" class="output" aria-live="polite">Paste your essay and press Start.</pre>
+      <div class="form-row" style="margin-top:12px;">
+        <label class="label" for="recallInput">Type from memory (Recall stage)</label>
+        <textarea id="recallInput" class="codearea" rows="3" placeholder="Type the chunk here…"></textarea>
+      </div>
+      <div class="actions">
+        <button id="showBtn" class="btn">Show/Hide</button>
+        <button id="checkBtn" class="btn primary">Check</button>
+        <button id="prevBtn" class="btn">Prev</button>
+        <button id="nextBtn" class="btn">Next</button>
+      </div>
+      <div id="feedback" class="help" style="margin-top:6px;">Feedback will appear here.</div>
+      <div class="help" id="progressText" style="margin-top:6px;">Progress: 0 / 0</div>
+      <div class="shortcuts">Shortcuts: ⌘/Ctrl+Enter = Check · ←/→ = Prev/Next</div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <div class="mobile-bar">
+    <button id="mPrev" class="btn">Prev</button>
+    <button id="mShow" class="btn">Show</button>
+    <button id="mCheck" class="btn primary">Check</button>
+    <button id="mNext" class="btn">Next</button>
+  </div>
+
+  <footer class="app-footer">
+    <div class="container">
+      <small>Essay Memoriser • Customize behaviour in <code>script.js</code>.</small>
+    </div>
+  </footer>
+
+  <script src="memoriser.js"></script>
+</body>
+</html>

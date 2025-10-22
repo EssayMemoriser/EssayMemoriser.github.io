@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Library • Essay Memoriser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <h1>Essay Memoriser</h1>
+      <p class="subtitle">Your Library</p>
+    </div>
+    <nav class="container" style="display:flex; gap:14px; padding-bottom:10px;">
+      <a href="index.html" class="btn ghost small">Trainer</a>
+      <a href="library.html" class="btn ghost small" aria-current="page">Library</a>
+      <a href="help.html" class="btn ghost small">Help</a>
+      <a href="about.html" class="btn ghost small">About</a>
+    </nav>
+  </header>
+
+  <main class="container app-main">
+    <section class="card">
+      <h2>Add to Library</h2>
+      <div class="grid-2">
+        <div>
+          <div class="form-row">
+            <label class="label" for="libName">Title</label>
+            <input id="libName" class="input" placeholder="e.g. Eli and the Hollow" />
+          </div>
+          <div class="form-row">
+            <label class="label" for="libText">Text</label>
+            <textarea id="libText" class="codearea" rows="8" placeholder="Paste essay text here…"></textarea>
+          </div>
+          <div class="actions">
+            <input type="file" id="libImport" accept=".txt" style="display:none;" />
+            <button id="libImportBtn" class="btn">Import .txt</button>
+            <button id="libAddBtn" class="btn primary">Save</button>
+          </div>
+        </div>
+        <div>
+          <p class="help">Tip: You can save from the Trainer page too by exporting and then re-importing here with a title.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Saved Essays</h2>
+      <div id="emptyHint" class="help">No saved essays yet.</div>
+      <div id="libList" style="display:grid; gap:12px;"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <small>Essay Memoriser • Library</small>
+    </div>
+  </footer>
+
+  <script src="library.js"></script>
+</body>
+</html>
